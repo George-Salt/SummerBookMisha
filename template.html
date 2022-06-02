@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="../media/images/favicon.png" size="64x64">
+    <title>Summer Book f/Misha - книги для чтения летом.</title>
+  </head>
+  <body>
+    <hr style="border-color: white;">
+      <h1 style="text-align: center;">Литература для чтения летом.</h1>
+      <h2 style="text-align: center;">1-2 класс</h2>
+    </hr>
+    <hr style="border-color: white;">
+      <nav aria-label="Page navigation example" class="mx-auto" style="width: 1100px;">
+        <ul class="pagination">
+          {% if index == 0 %}
+            <li class="page-item disabled"><span class="page-link">Предыдущая</span></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="./index{{ index - 1 }}.html">Предыдущая</a></li>
+          {% endif %}
+          {% for page in range(pages_num) %}
+            {% if page == index %}
+              <li class="page-item"><a class="page-link" href="./index{{ page }}.html" style="background-color: yellow; color: black;">{{ page + 1 }}<span class="sr-only">(current)</span></a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="./index{{ page }}.html">{{ page + 1 }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if index == pages_num - 1 %}
+            <li class="page-item disabled"><span class="page-link">Следующая</span></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="./index{{ index + 1 }}.html">Следующая</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+
+      {% for pair in books %}
+        <div class="container">
+          <div class="row">
+            {% for book in pair %}
+              <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img style="width: 180px; height: 250px;" src=".{{ book.img_path }}" class="card-img" alt="Обложка книги">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ book.name }}</h5>
+                        <p class="card-text">{{ book.author }}</p>
+                        {% for genre in book.genre %}
+                          <span class="badge badge-light">{{ genre }}</span>
+                        {% endfor %}
+                        <div style="margin-top: 10px;">
+                          <a href="../media/books/{{ book.name }}.txt" class="txt-link" target="_blank" rel="noopener noreferrer" style="border-radius: 5px; margin-right: 10px; background-color: yellow; color: black; padding: 5px;">Читать</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+      <div class="icons8_signature" style="text-align: center; margin-right: 10px; background-color: yellow; color: black; padding: 5px;">
+        <a style="color: black;" target="_blank" href="https://icons8.com/icon/FgMs84V9yrMV/teaching">Teaching</a> icon by <a style="color: black;" target="_blank" href="https://icons8.com">Icons8</a>
+      </div>
+    </hr>
+    <div class="my_signature" style="text-align: center; margin-right: 10px; background-color: yellow; color: black; padding: 5px;">
+      <h3>BY <a target="_blank" href="https://vk.com/george_salt" style="color: black; padding-top: 5px; padding-bottom: 5px;">George Salt</a></h3>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
